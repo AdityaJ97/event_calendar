@@ -129,7 +129,7 @@ $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
 
 
-
+ob_end_clean();
 $pdf->Output('acknowledgement.pdf', 'D');
 
 
