@@ -51,7 +51,7 @@ $pdf->Write(0, 'Report on events', '', 0, 'C', true, 0, false, false, 0);
 
 $pdf->SetFont('dejavusans', '', 10);
 //$pdf->writeHTML($var, true, false, true, false, '');
-$html .= <<<EOF
+$html = <<<EOF
 <!DOCTYPE html>
 <html>
 <head>
