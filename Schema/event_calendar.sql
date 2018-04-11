@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2018 at 08:49 AM
+-- Generation Time: Apr 11, 2018 at 03:00 PM
 -- Server version: 5.7.21-0ubuntu0.16.04.1
 -- PHP Version: 5.6.30
 
@@ -117,11 +117,11 @@ CREATE TABLE `mrbs_entry` (
   `image_path` varchar(200) DEFAULT NULL,
   `club_name` varchar(64) DEFAULT NULL,
   `club_secretary` varchar(64) DEFAULT NULL,
-  `secretary_contact` int(10) DEFAULT NULL,
+  `secretary_contact` bigint(12) DEFAULT NULL,
   `secretary_email` varchar(50) DEFAULT NULL,
-  `contact_details` int(10) DEFAULT NULL,
+  `contact_details` bigint(12) DEFAULT NULL,
   `user_email` varchar(50) DEFAULT NULL,
-  `facad_contact` int(10) DEFAULT NULL,
+  `facad_contact` bigint(12) DEFAULT NULL,
   `approved_facad` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -130,15 +130,18 @@ CREATE TABLE `mrbs_entry` (
 --
 
 INSERT INTO `mrbs_entry` (`id`, `start_time`, `end_time`, `entry_type`, `repeat_id`, `room_id`, `timestamp`, `create_by`, `modified_by`, `name`, `type`, `description`, `speakers`, `status`, `reminded`, `info_time`, `info_user`, `info_text`, `ical_uid`, `ical_sequence`, `ical_recur_id`, `students_attended`, `event_report`, `image_path`, `club_name`, `club_secretary`, `secretary_contact`, `secretary_email`, `contact_details`, `user_email`, `facad_contact`, `approved_facad`) VALUES
-(3, 1506907800, 1506951000, 0, NULL, 7, '2017-10-02 06:51:45', 'rohit', '', 'Linux Workshop', 'I', 'To conduct a Foss Linux Workshop of Debian Packaging and OS concepts.', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d1e2016d30f-d8dea7ff@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1506994200, 1506997800, 0, NULL, 8, '2017-10-02 06:56:09', 'sagar', '', 'Webcalendar Project Meet', 'I', 'To show prototype of Webcalendar Project', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d1e309436b8-f36a9bcf@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 1506857400, 1506861000, 0, NULL, 8, '2017-10-02 07:22:02', 'rohit', 'rohit', 'SDS Meet', 'I', 'To discuss about projects and hackathons', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d1def61ee76-8d2f2c27@localhost', 3, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 1507181400, 1507185000, 0, NULL, 1, '2017-10-05 16:06:27', 'rohit', '', 'Extra Lecture(PSC)', 'I', 'Extra lecture is scheduled to catch up with syllabus.', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d65883f11ae-0b7faad1@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 1507170600, 1507174200, 0, NULL, 8, '2017-10-07 06:21:07', 'rohit', '', 'Event 1', 'I', 'An Event', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d872532fb53-d6b51230@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 1507179600, 1507190400, 0, NULL, 9, '2017-10-07 10:53:01', 'rohit', '', 'Impressions', 'I', 'Coep\'s Annual Cultural Festival.', NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-59d8b20dac0a0-f1aa2d20@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 1507181400, 1507188600, 0, NULL, 5, '2017-10-07 10:53:58', 'rohit', '', 'Placements and Internship', 'I', 'Schlumberger Pre Placement Talk', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d8b24693afb-cc70809d@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, 1507289400, 1507296600, 0, NULL, 9, '2017-10-07 11:54:35', 'rohit', 'rohit', 'ZEST\'18 Inaug', 'I', 'Coep annual sports festival ZEST 2018 Inauguration function.', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d658d683bff-433a5e7d@localhost', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 1507609800, 1507613400, 0, NULL, 2, '2018-04-09 16:15:14', 'sagar', '', 'A tentative event', 'I', 'An event which needs to be approved by admin', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59da35a722ef6-bc853eef@localhost', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 1506907800, 1506951000, 0, NULL, 7, '2018-04-11 07:28:12', 'rohit', '', 'Linux Workshop', 'F', 'To conduct a Foss Linux Workshop of Debian Packaging and OS concepts.', NULL, 2, NULL, NULL, NULL, NULL, 'MRBS-59d1e2016d30f-d8dea7ff@localhost', 0, NULL, NULL, NULL, NULL, 'a', 'parag', 345, 'asdf', 123, 'saf', 213, 1),
+(4, 1506994200, 1506997800, 0, NULL, 8, '2018-04-11 07:27:57', 'aditya', '', 'Webcalendar Project Meet', 'F', 'To show prototype of Webcalendar Project', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d1e309436b8-f36a9bcf@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(6, 1506857400, 1506861000, 0, NULL, 8, '2018-04-11 07:22:55', 'rohit', 'rohit', 'SDS Meet', 'I', 'To discuss about projects and hackathons', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d1def61ee76-8d2f2c27@localhost', 3, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(7, 1507181400, 1507185000, 0, NULL, 1, '2018-04-11 07:24:47', 'aditya', '', 'Extra Lecture(PSC)', 'I', 'Extra lecture is scheduled to catch up with syllabus.', NULL, 8, NULL, NULL, NULL, NULL, 'MRBS-59d65883f11ae-0b7faad1@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(9, 1507170600, 1507174200, 0, NULL, 8, '2018-04-07 06:21:07', 'rohit', '', 'Event 1', 'I', 'An Event', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d872532fb53-d6b51230@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(10, 1507179600, 1507190400, 0, NULL, 9, '2018-04-11 07:23:04', 'aditya', '', 'Impressions', 'I', 'Coep\'s Annual Cultural Festival.', NULL, 0, NULL, NULL, NULL, NULL, 'MRBS-59d8b20dac0a0-f1aa2d20@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(11, 1507181400, 1507188600, 0, NULL, 5, '2018-04-30 10:53:58', 'rohit', '', 'Placements and Internship', 'I', 'Schlumberger Pre Placement Talk', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d8b24693afb-cc70809d@localhost', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(12, 1507289400, 1507296600, 0, NULL, 9, '2018-04-22 11:54:35', 'rohit', 'rohit', 'ZEST\'18 Inaug', 'I', 'Coep annual sports festival ZEST 2018 Inauguration function.', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59d658d683bff-433a5e7d@localhost', 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(13, 1507609800, 1507613400, 0, NULL, 2, '2018-04-11 07:23:11', 'aditya', '', 'A tentative event', 'I', 'An event which needs to be approved by admin', NULL, 4, NULL, NULL, NULL, NULL, 'MRBS-59da35a722ef6-bc853eef@localhost', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(14, 1523507400, 1523511000, 0, NULL, 4, '2018-04-11 07:11:44', 'aditya', '', 'SDS Meet', 'F', 'Final meet of members', 'No Speaker', 0, NULL, NULL, NULL, NULL, 'MRBS-5acdb53074cc4-7dc2ef80@localhost', 0, NULL, NULL, NULL, '', 'a', 'Parag Verma', 9988776655, 'parag@gmail.com', 7744904623, 'aj@gmail.com', 4455667788, 1),
+(15, 1523583000, 1523586600, 0, NULL, 5, '2018-04-11 07:15:17', 'aditya', '', 'SDS get together', 'F', 'Party', 'No speaker', 0, NULL, NULL, NULL, NULL, 'MRBS-5acdb6057782e-9871232a@localhost', 0, NULL, NULL, NULL, '', 'a', 'Parag Verma', 9955778899, 'adf', 8899, 'dfan', 6677, 1),
+(17, 1523755800, 1523759400, 0, NULL, 1, '2018-04-11 07:18:05', 'rohit', '', 'sfaj', 'F', 'sfaj', 'nsjasg', 2, NULL, NULL, NULL, NULL, 'MRBS-5acdb6ad026c1-656df773@localhost', 0, NULL, NULL, NULL, '', 'a', 'jdb', 4378, 'jdbfak', 24896, 'djgj', 48658, 1);
 
 -- --------------------------------------------------------
 
@@ -176,11 +179,11 @@ CREATE TABLE `mrbs_repeat` (
   `image_path` varchar(200) DEFAULT NULL,
   `club_name` varchar(64) DEFAULT NULL,
   `club_secretary` varchar(64) DEFAULT NULL,
-  `secretary_contact` int(10) DEFAULT NULL,
+  `secretary_contact` bigint(12) DEFAULT NULL,
   `secretary_email` varchar(50) DEFAULT NULL,
-  `contact_details` int(10) DEFAULT NULL,
+  `contact_details` bigint(12) DEFAULT NULL,
   `user_email` varchar(50) DEFAULT NULL,
-  `facad_contact` int(10) DEFAULT NULL,
+  `facad_contact` bigint(12) DEFAULT NULL,
   `approved_facad` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -343,7 +346,7 @@ ALTER TABLE `mrbs_area`
 -- AUTO_INCREMENT for table `mrbs_entry`
 --
 ALTER TABLE `mrbs_entry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `mrbs_repeat`
 --
@@ -391,6 +394,14 @@ ALTER TABLE `mrbs_repeat`
 --
 ALTER TABLE `mrbs_room`
   ADD CONSTRAINT `mrbs_room_ibfk_1` FOREIGN KEY (`area_id`) REFERENCES `mrbs_area` (`id`) ON UPDATE CASCADE;
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `status_update` ON SCHEDULE EVERY 1 HOUR STARTS '2018-04-11 00:00:00' ENDS '2020-01-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO Update mrbs_entry Set status = 8 WHERE end_time < UNIX_TIMESTAMP() and status = 0 and students_attended is null$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
