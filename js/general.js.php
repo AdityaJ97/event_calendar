@@ -28,7 +28,36 @@ var supportsDatalist = function supportsDatalist() {
            ('options' in document.createElement('datalist')) &&
            (window.HTMLDataListElement !== undefined);
   };
-  
+
+function toggle(source) {
+    checkboxes = document.getElementsByClassName('options');
+    var checkarr = document.getElementById('checkboxarr');
+    checkarr.value = "";
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+        checkboxes[i].checked = source.checked;
+    }
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+        if(checkboxes[i].checked) {
+            checkarr.value += checkboxes[i].value;
+            checkarr.value += " ";
+        }
+    }
+   // alert(checkarr.value);
+}
+
+
+function setBox(checkbox) {
+    checkboxes = document.getElementsByClassName('options');
+    var checkarr = document.getElementById('checkboxarr');
+    checkarr.value = "";
+    for (var i = 0, n = checkboxes.length; i < n; i++) {
+        if(checkboxes[i].checked) {
+            checkarr.value += checkboxes[i].value;
+            checkarr.value += " ";
+        }
+    }
+    //alert(checkarr.value);
+}
 <?php
 // Set up a cloned <thead> for use with floating headers
 ?>

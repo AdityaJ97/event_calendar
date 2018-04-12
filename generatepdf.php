@@ -417,6 +417,7 @@ function generate_exportpdf_button()
 	echo "<div id=\"generate_pdf\">\n";
 	echo "<form action = \"makepdf.php\" method= \"post\">";
 	echo '<input type= "hidden" name="html" value = "'. htmlspecialchars($GLOBALS['html']). '">';
+    echo '<input id = "checkboxarr" type= "hidden" name="checkboxarr" value="">';
 	echo "<input class=\"submit\" type=\"submit\" value=\"Export as PDF\">\n";
 	echo "</form>";
 	echo "</div>\n";
@@ -669,22 +670,44 @@ function close_summary()
 	}
 }
 
+
 $evenflag = 1;
+$row_no = 1;
 // Output a table row.
 function output_row(&$values, $output_format, $body_row = TRUE)
 {
-	global $evenflag;
+	global $evenflag, $row_no;
 	$GLOBALS['html'] .= '';
 	$cell_tag = ($body_row) ? 'td' : 'th';
 	if($evenflag == 1) {
-		$GLOBALS['html'] .= "<tr class=\"even\">\n<$cell_tag>";
+	    if($output_format == OUTPUT_PDF) {
+            if ($cell_tag == 'td') {
+                $GLOBALS['html'] .= "<tr class=\"even\" id = \"".$row_no."\">\n<$cell_tag><input type = \"checkbox\" class =\"options\" name = \"checklist[]\" value = \"" . $row_no . "\" onclick=\"setBox(this)\" checked>";
+                $row_no++;
+            }
+            else
+                $GLOBALS['html'] .= "<tr class=\"even\">\n<$cell_tag><input type = \"checkbox\" onclick=\"toggle(this)\" checked>";
+        }
+        else {
+            $GLOBALS['html'] .= "<tr class=\"even\">\n<$cell_tag>";
+        }
 		$GLOBALS['html'] .= implode("</$cell_tag>\n<$cell_tag>", $values);
 		$GLOBALS['html'] .= "</$cell_tag>\n</tr>";
 		$evenflag = 0;
 	}
 	else {
-		$GLOBALS['html'] .= "<tr class=\"odd\">\n<$cell_tag>";
-		$GLOBALS['html'] .= implode("</$cell_tag>\n<$cell_tag>", $values);
+        if($output_format == OUTPUT_PDF) {
+            if ($cell_tag == 'td') {
+                $GLOBALS['html'] .= "<tr class=\"odd\" id = \"".$row_no."\">\n<$cell_tag><input type = \"checkbox\" class =\"options\"  name = \"checklist[]\" value = \"" . $row_no . "\" onclick=\"setBox(this)\" checked>";
+                $row_no++;
+            }
+            else
+                $GLOBALS['html'] .= "<tr class=\"odd\">\n<$cell_tag><input type = \"checkbox\" onclick=\"toggle(this)\" checked>";
+        }
+        else {
+            $GLOBALS['html'] .= "<tr class=\"odd\">\n<$cell_tag>";
+        }
+	    $GLOBALS['html'] .= implode("</$cell_tag>\n<$cell_tag>", $values);
 		$GLOBALS['html'] .= "</$cell_tag>\n</tr>";
 		$evenflag = 1;
 	}
@@ -707,7 +730,7 @@ function output_row(&$values, $output_format, $body_row = TRUE)
 			$line .= "</$cell_tag>\n</tr>\n";
 
 		}
-		//echo $line;
+		return $line;
 	}
 }
 

@@ -50,7 +50,6 @@ var conflictTimer = function conflictTimer(set) {
     ?>
   };
 
-
 <?php
 // Function to display the secondary repeat type fieldset appropriate
 // to the selected repeat type
