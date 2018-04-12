@@ -156,7 +156,7 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
   // Last updated
   $tbody .= create_details_row(get_vocab("lastupdate"), time_date_string($data['last_updated']), $as_html);
   // The custom fields
-/*  $fields = db()->field_info($tbl_entry);
+ $fields = db()->field_info($tbl_entry);
   foreach ($fields as $field)
   {
     $key = $field['name'];
@@ -203,7 +203,7 @@ function create_details_body($data, $as_html=FALSE, $keep_private=FALSE, $room_d
       $class = ($keep_private && isset($is_private_field["entry.$key"]) && $is_private_field["entry.$key"]) ? "private" : "";
       $tbody .= create_details_row($label, $value, $as_html, $class);
     }
-  }*/				//Change Sagar removed code to print custom fields
+  }				//Change Sagar removed code to print custom fields
   // Repeat type
   $tbody .= create_details_row(get_vocab("rep_type"), get_vocab("rep_type_" . $data['rep_type']), $as_html);
   // Repeat details

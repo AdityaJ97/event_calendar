@@ -44,7 +44,7 @@ for($i=0; $i<$total; $i++) {
 
     if ($tmpFilePath != ""){
 
-        $imagename=date("d-m-Y")."-".time().$i.$ext;
+        $imagename=($i+1).$ext;
         $target_path = $dir_name."/".$imagename;
 
         if(move_uploaded_file($tmpFilePath, $target_path)) {

@@ -385,7 +385,13 @@ echo create_details_body($row, TRUE, $keep_private, $room_disabled);
 
 ?>
 </table>
-
+<?php
+if($row['students_attended'] != "") {
+    echo "<h3> Event Images :</h3> <br>";
+    echo "<img src=\"upload/" . $id . "/1.png\" height=\"200\" width=\"200\">";
+    echo "<img src=\"upload/" . $id . "/2.png\" height=\"200\" width=\"200\">";
+}
+?>
 <div id="view_entry_nav">
   <?php
   // Only show the links for Edit and Delete if the room is enabled.    We're
