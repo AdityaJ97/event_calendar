@@ -44,7 +44,7 @@ for($i=0; $i<$total; $i++) {
 
     if ($tmpFilePath != ""){
 
-        $imagename=($i+1).$ext;
+        $imagename=($i+1).".png";
         $target_path = $dir_name."/".$imagename;
 
         if(move_uploaded_file($tmpFilePath, $target_path)) {

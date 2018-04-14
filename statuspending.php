@@ -18,51 +18,7 @@ function display_buttons($row, $is_series)
     $query_string = "id=$target_id";
     $query_string .= ($is_series) ? "&amp;series=1" : "";
 
-/*    if (auth_book_admin($user, $row['room_id']))
-    {
-        // approve
-        echo "<form action=\"approve_entry_handler.php\" method=\"post\">\n";
-        echo "<div>\n";
-        echo "<input type=\"hidden\" name=\"action\" value=\"approve\">\n";
-        echo "<input type=\"hidden\" name=\"id\" value=\"$target_id\">\n";
-        echo "<input type=\"hidden\" name=\"series\" value=\"$is_series\">\n";
-        echo "<input type=\"hidden\" name=\"returl\" value=\"" . htmlspecialchars($returl) . "\">\n";
-        echo "<input type=\"submit\" value=\"" . get_vocab("approve") . "\">\n";
-        echo "</div>\n";
-        echo "</form>\n";
-        // reject
-        echo "<form action=\"view_entry.php?$query_string\" method=\"post\">\n";
-        echo "<div>\n";
-        echo "<input type=\"hidden\" name=\"action\" value=\"reject\">\n";
-        echo "<input type=\"hidden\" name=\"returl\" value=\"" . htmlspecialchars($returl) . "\">\n";
-        echo "<input type=\"submit\" value=\"" . get_vocab("reject") . "\">\n";
-        echo "</div>\n";
-        echo "</form>\n";
-        // more info
-        $info_time = ($is_series) ? $row['repeat_info_time'] : $row['entry_info_time'];
-        $info_user = ($is_series) ? $row['repeat_info_user'] : $row['entry_info_user'];
-        if (empty($info_time))
-        {
-            $info_title = get_vocab("no_request_yet");
-        }
-        else
-        {
-            $info_title = get_vocab("last_request") . ' ' . time_date_string($info_time);
-            if (!empty($info_user))
-            {
-                $info_title .= " " . get_vocab("by") . " $info_user";
-            }
-        }
-        echo "<form action=\"view_entry.php?$query_string\" method=\"post\">\n";
-        echo "<div>\n";
-        echo "<input type=\"hidden\" name=\"action\" value=\"more_info\">\n";
-        echo "<input type=\"hidden\" name=\"returl\" value=\"" . htmlspecialchars($returl) . "\">\n";
-        echo "<input type=\"submit\" title=\"" . htmlspecialchars($info_title) . "\" value=\"" . get_vocab("more_info") . "\">\n";
-        echo "</div>\n";
-        echo "</form>\n";
-    }
-    else
-    {*/					//Change Sagar show upload button inspite of user level 
+    //Change show upload button inspite of user level
         // get the area settings for this room
         get_area_settings(get_area($row['room_id']));
         // if enough time has passed since the last reminder
@@ -75,13 +31,13 @@ function display_buttons($row, $is_series)
             echo "<input type=\"hidden\" name=\"id\" value=\"" . $row['id'] . "\">\n";
             echo "<input type=\"submit\" value=\"" . "Upload". "\">\n";
             echo "</div>\n";
-            echo "</form>\n";  //Change Sagar Changed submit style to get
+            echo "</form>\n";  //Change Changed submit style to get
         /*}
         else
         {
             echo "&nbsp";
         }*/
-//    }				Change Sagar
+//    }
 }
 
 
@@ -150,14 +106,14 @@ function display_series_title_row($row)
 }
 
 // display an entry in a row
-function display_entry_row($row)
+function display_entry_row($row,$flag)
 {
     echo "<tr>\n";
     echo "<td>&nbsp;</td>\n";
 
     // reservation name, with a link to the view_entry page
     echo "<td>";
-    echo "<a href=\"view_entry.php?id=".$row['id']."\">" . htmlspecialchars($row['name']) ."</a></td>\n";
+    echo "<a href=\"view_entry.php?id=" . $row['id'] . "\">" . htmlspecialchars($row['name']) . "</a></td>\n";
 
     // create_by, area and room names
     echo "<td>" . htmlspecialchars($row['create_by']) . "</td>\n";
@@ -169,21 +125,26 @@ function display_entry_row($row)
     echo "<td>";
     // <span> for sorting
     echo "<span title=\"" . $row['start_time'] . "\"></span>";
-    echo "<a href=\"day.php?day=$link[mday]&amp;month=$link[mon]&amp;year=$link[year]&amp;area=".$row['area_id']."\">";
-    if(empty($row['enable_periods']))
-    {
+    echo "<a href=\"day.php?day=$link[mday]&amp;month=$link[mon]&amp;year=$link[year]&amp;area=" . $row['area_id'] . "\">";
+    if (empty($row['enable_periods'])) {
         $link_str = time_date_string($row['start_time']);
-    }
-    else
-    {
-        list(,$link_str) = period_date_string($row['start_time']);
+    } else {
+        list(, $link_str) = period_date_string($row['start_time']);
     }
     echo "$link_str</a></td>";
 
     // action buttons
-    echo "<td>\n";
-    display_buttons($row, FALSE);
-    echo "</td>\n";
+    if ($flag) {
+        echo "<td>\n";
+        display_buttons($row, FALSE);
+        echo "</td>\n";
+    }
+    else{
+        echo "<td>\n";
+        echo "COMPLETE";
+        echo "</td>\n";
+    }
+
     echo "</tr>\n";
 }
 
@@ -202,8 +163,60 @@ echo "<h1>" . "Status Update Pending" . "</h1>\n";
 // Get a list of all bookings awaiting approval
 // We are only interested in areas where approval is required
 
-//$sql_approval_enabled = some_area_predicate('approval_enabled');  Change Sagar Not needed
+//$sql_approval_enabled = some_area_predicate('approval_enabled');
 
+echo "<h3>" . "Status Update Completed Events" . "</h3>\n";
+$sql = "SELECT E.id, E.name, E.room_id, E.start_time, E.create_by, " .
+    db()->syntax_timestamp_to_unix("E.timestamp") . " AS last_updated,
+               E.reminded, E.repeat_id,
+               M.room_name, M.area_id, A.area_name, A.enable_periods,
+               E.info_time AS entry_info_time, E.info_user AS entry_info_user,
+               T.info_time AS repeat_info_time, T.info_user AS repeat_info_user
+          FROM $tbl_room AS M, $tbl_area AS A, $tbl_entry AS E
+     LEFT JOIN $tbl_repeat AS T ON E.repeat_id=T.id
+         WHERE E.room_id = M.id
+           AND M.area_id = A.id
+           AND M.disabled = 0
+           AND A.disabled = 0
+           AND E.students_attended IS NOT NULL";
+
+$sql_params = array();
+
+// Ordinary users can only see their own bookings
+/*if (!$is_admin)
+{*/				// All users can see only their bookings
+$sql .= " AND E.create_by=?";
+$sql_params[] = $user;
+//}				Change
+// We want entries for a series to appear together so that we can display
+// them as a separate table below the main entry for the series.
+$sql .= " ORDER BY repeat_id, start_time";
+
+$res = db()->query($sql, $sql_params);
+
+if ($res->count() == 0)
+{
+
+}
+else  // display them in a table
+{
+    echo "<div id=\"pending_list\" class=\"datatable_container\">\n";
+    echo "<table id=\"pending_table\" class=\"admin_table display\">\n";
+    display_table_head();
+
+    echo "<tbody>\n";
+    $last_repeat_id = NULL;
+    $is_series = FALSE;
+    for ($i = 0; ($row = $res->row_keyed($i)); $i++)
+    {
+        display_entry_row($row,0);
+    }
+    echo "</tbody>\n";
+    echo "</table>\n";
+    echo "</div>\n";
+}
+
+echo "<h3>" . "Status Update Pending Events" . "</h3>\n";
 $sql = "SELECT E.id, E.name, E.room_id, E.start_time, E.create_by, " .
     db()->syntax_timestamp_to_unix("E.timestamp") . " AS last_updated,
                E.reminded, E.repeat_id,
@@ -222,10 +235,10 @@ $sql_params = array();
 
 // Ordinary users can only see their own bookings       
 /*if (!$is_admin)
-{*/				//Change Sagar All users can see only their bookings
+{*/				// All users can see only their bookings
     $sql .= " AND E.create_by=?";
     $sql_params[] = $user;
-//}				Change Sagar
+//}				Change
 // We want entries for a series to appear together so that we can display
 // them as a separate table below the main entry for the series. 
 $sql .= " ORDER BY repeat_id, start_time";
@@ -247,38 +260,7 @@ else  // display them in a table
     $is_series = FALSE;
     for ($i = 0; ($row = $res->row_keyed($i)); $i++)
     {
-  /*      if ($row['repeat_id'] != $last_repeat_id)
-            // there's some kind of change
-        {
-            $last_repeat_id = $row['repeat_id'];
-            if ($is_series)
-            {
-                // end the last series table if there was one
-                $is_series = FALSE;
-                echo "</tbody></table></div></td></tr>\n";
-            }
-
-            if (!empty($row['repeat_id']))
-            {
-                // we're starting a new series
-                $is_series = TRUE;
-                // Put in the title row
-                display_series_title_row($row);
-                echo "<tr class=\"sub_table\">\n";
-                echo "<td class=\"sub_table\" colspan=\"7\">";
-                $table_id = "subtable_" . $row['repeat_id'];
-                echo "<div class=\"details\">\n";
-                echo "<table id=\"$table_id\" class=\"admin_table display sub\">\n";
-                display_subtable_head($row);
-                echo "<tbody>\n";
-            }
-        }*/				//Change Sagar Don't want to club repeat type events
-        display_entry_row($row);
-    }
-    if ($is_series)
-    {
-        // if we were in a series, then close the sub-table
-        echo "</tbody></table></div></td></tr>\n";
+        display_entry_row($row,1);
     }
     echo "</tbody>\n";
     echo "</table>\n";
