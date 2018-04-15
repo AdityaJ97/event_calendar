@@ -44,13 +44,14 @@ function print_header_site_info()
     // Suppress error messages in case the logo is a URL and allow_url_fopen
     // is not enabled in php.ini
     $logo_size = @getimagesize($mrbs_company_logo);
-    echo "<img src=\"$mrbs_company_logo\" " . $logo_size[3] . " alt=\"$mrbs_company\">\n";
+    //echo "<img src=\"$mrbs_company_logo\" " . $logo_size[3] . " alt=\"$mrbs_company\">\n";
+    echo "<img style=\"float: left;\" src=\"$mrbs_company_logo\"  width='60px' height='60px'  alt=\"$mrbs_company\">\n";
+    echo "<span style=\"vertical-align: top ;\">$mrbs_company</span>\n";
   }
   if (!empty($mrbs_company_url))
   {
     echo "</a>\n";
   }
-  echo "</div>\n";
     
   if (!empty($mrbs_company_more_info))
   {
@@ -58,10 +59,12 @@ function print_header_site_info()
   }
 
   echo "<div id=\"mrbs\">\n";
-  echo "<a href=\"index.php\">" . get_vocab("mrbs") . "</a>\n";
+  echo "<a style=\"display: inline; \" href=\"index.php\">" . get_vocab("mrbs") ;
+  echo"</a>\n";
   echo "</div>\n";
   
   echo "</div>\n";
+    echo "</div>\n";
 }
 
 
