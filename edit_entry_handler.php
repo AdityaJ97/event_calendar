@@ -677,7 +677,7 @@ foreach ($rooms as $room_id)
   // (Note: the status field is the only one that can differ by room)
   $status = 0;
   // Privacy status
-  if ($isprivate)
+  /*if ($isprivate)
   {
     $status |= STATUS_PRIVATE;  // Set the private bit
   }
@@ -689,7 +689,7 @@ foreach ($rooms as $room_id)
   if ($approval_enabled && !auth_book_admin($user, $room_id))
   {
     $status |= STATUS_AWAITING_APPROVAL;
-  }
+  }*/
   // Confirmation status
   if ($confirmation_enabled && !$confirmed)
   {
