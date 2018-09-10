@@ -100,13 +100,13 @@ function print_goto_date($day, $month, $year, $area, $room)
   {
     $n_outstanding = get_entries_n_outstanding($user);
     $n_status = get_status_count($user);
-    echo "<div id=\"n_outstanding\"" .
+   /* echo "<div id=\"n_outstanding\"" .
          (($n_outstanding > 0) ? " class=\"outstanding\"" : '') .
          ">\n";
     echo "<a href=\"pending.php?day=$day&amp;month=$month&amp;year=$year&amp;area=$area" . 
          ((!empty($room)) ? "&amp;room=$room" : "") . 
          "\">$n_outstanding " . get_vocab("outstanding") . "</a>\n";
-    echo "</div>\n";
+    echo "</div>\n";*/
     echo "<div id=\"n_outstanding\"" .
           (($n_status > 0) ? " class=\"outstanding\"" : '') .
           ">\n";
