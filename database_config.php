@@ -13,15 +13,15 @@ $db_host = "";
 // can uncomment the following line and specify the port number
 // $db_port = 1234;
 // Database name:
-$db_database = "mrbs_original";
+$db_database = "event_calendar";
 // Schema name.  This only applies to PostgreSQL and is only necessary if you have more
 // than one schema in your database and also you are using the same MRBS table names in
 // multiple schemas.
 //$db_schema = "public";
 // Database login user name:
-$db_login = "aditya";
+$db_login = "root";
 // Database login password:
-$db_password = 'aditya123';
+$db_password = 'coep@123';
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";
