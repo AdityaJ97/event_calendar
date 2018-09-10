@@ -51,15 +51,15 @@ $db_host = "localhost";
 // can uncomment the following line and specify the port number
 // $db_port = 1234;
 // Database name:
-$db_database = "mrbs_original";
+$db_database = "event_calendar";
 // Schema name.  This only applies to PostgreSQL and is only necessary if you have more
 // than one schema in your database and also you are using the same MRBS table names in
 // multiple schemas.
 //$db_schema = "public";
 // Database login user name:
-$db_login = "aditya";
+$db_login = "root";
 // Database login password:
-$db_password = 'aditya123';
+$db_password = 'coep@123';
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";
@@ -85,20 +85,21 @@ $weekstarts = 1;
 $times_along_top = TRUE;
 $default_view = "month";
 $auth["type"] = "ldap";
-$ldap_host = "ldap://localhost";
-$ldap_base_dn = "ou=users,dc=testserver,dc=com";
-$ldap_dn_search_dn = "ou=users,dc=testserver,dc=com";
-$ldap_user_attrib = "givenName";
-$ldap_dn_search_attrib = "givenName";
+$ldap_host = "ldap://10.1.101.41";
+$ldap_base_dn = "dc=coep,dc=org,dc=in";
+$ldap_dn_search_dn = "ou=students,dc=coep,dc=org,dc=in";
+$ldap_user_attrib = "uidNumber";
+$ldap_dn_search_attrib = "uidNumber";
 
-$auth["type"] = "config";
-$auth["user"]["aditya"] = "aditya123"; $auth["user"]["rohit"] = "rohit123";
-$auth["admin"][] = "aditya";
+//$auth["type"] = "config";
+//$auth["user"]["aditya"] = "aditya123"; $auth["user"]["rohit"] = "rohit123";
+$auth["admin"][] = "111503002";
+$auth["admin"][] = "111405006";
 
 //$ldap_admin_group_dn = 'cn=admin,ou=groups,dc=sds,dc=com';
-$auth['admin'][] = 'aditya';
-$auth['admin'][] = 'Admin2';
-$auth['admin'][] = 'rohit';
+//$auth['admin'][] = 'aditya';
+//$auth['admin'][] = 'Admin2';
+//$auth['admin'][] = 'rohit';
 $ldap_group_member_attrib = 'departmentNumber';
 $approval_enabled = TRUE;
 $confirmation_enabled = FALSE;
@@ -139,7 +140,29 @@ $select_options['entry.club_name'] = array( '' => 'Please select one option',
                                             'i' => 'BAJA Club',
                                             'j' => 'Team Velociracers',
                                             'k' => 'Aryaraas',
-                                            'l' => 'Abhijaat');
+                                            'l' => 'Abhijaat News letter',
+                                            'm' => 'Magazine',
+                                            'n' => 'Sunrisers Club',
+                                            'o' => 'Gocarting',
+                                            'p' => 'Society for Women Engineers',
+                                            'q' => 'Tedex COEP',
+                                            'r' => 'Spandan',
+                                            's' => 'Annual Social Gathering',
+                                            't' => 'Regatta',
+                                            'u' => 'Team Incendium',
+                                            'v' => 'NSS',
+                                            'w' => 'Nemesis',
+                                            'x' => 'HAM Club',
+                                            'y' => 'Team Octane Racing',
+                                            'z' => 'Debate Club',
+                                            'aa' => 'Ramanujan Club',
+                                            'ab' => 'Spic Macay',
+                                            'ac' => 'BHAU E-Cell',
+                                            'ad' => 'Philomistic Club',
+                                            'ae' => 'Personality Development Club',
+                                            'af' => 'Student Welfare Forum',
+                                            'ag' => 'ZEST',
+                                            'ah' => 'Science Club');
 $vocab_override['en']['namebooker'] = 'Title';
 $edit_entry_field_order = array('name', 'description', 'speakers');
 unset($is_report_criteria);
