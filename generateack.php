@@ -101,8 +101,44 @@ $location = $_GET["location"];
 $start_time = $_GET["start_time"];
 $end_time = $_GET["end_time"];
 
+$select_options = array(
+						                  	'a' => 'SDS',
+                                            'b' => 'CSAT',
+                                            'c' => 'Robot Study Circle',
+                                            'd' => 'History Club',
+                                            'e' => 'Janeev Club',
+                                            'f' => 'MindSpark',
+                                            'g' => 'Impressions',
+                                            'h' => 'Astronomy Club',
+                                            'i' => 'BAJA Club',
+                                            'j' => 'Team Velociracers',
+                                            'k' => 'Aryaraas',
+                                            'l' => 'Abhijaat News letter',
+                                            'm' => 'Magazine',
+                                            'n' => 'Sunrisers Club',
+                                            'o' => 'Gocarting',
+                                            'p' => 'Society for Women Engineers',
+                                            'q' => 'Tedex COEP',
+                                            'r' => 'Spandan',
+                                            's' => 'Annual Social Gathering',
+                                            't' => 'Regatta',
+                                            'u' => 'Team Incendium',
+                                            'v' => 'NSS',
+                                            'w' => 'Nemesis',
+                                            'x' => 'HAM Club',
+                                            'y' => 'Team Octane Racing',
+                                            'z' => 'Debate Club',
+                                            'aa' => 'Ramanujan Club',
+                                            'ab' => 'Spic Macay',
+                                            'ac' => 'BHAU E-Cell',
+                                            'ad' => 'Philomistic Club',
+                                            'ae' => 'Personality Development Club',
+                                            'af' => 'Student Welfare Forum',
+                                            'ag' => 'ZEST',
+                                            'ah' => 'Science Club');
 
-$html = "<p>This is to acknowledge that the event ". $name. " by club/Team ". $club_name ." was conducted successfully in ". $location ." from ". $start_time." to ". $end_time." . </p>
+
+$html = "<p>This is to acknowledge that the event ". $name. " by club/Team ". $select_options[$club_name] ." was conducted successfully in ". $location ." from ". $start_time." to ". $end_time." . </p>
 <br><br><p>Event Description: ". $description. "</p>
 <br><br><p>No of students attended: ". $students_attended . "</p>";
 // Print text using writeHTMLCell()
